@@ -1,0 +1,204 @@
+ \include{lecture_header}
+\title{LES of Turbulent Flows: Project \#2}
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE & TOC SLIDES
+%----------------------------------------------------------------------------------------
+
+\begin{frame} 
+  \titlepage
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Overview}
+\tableofcontents
+\end{frame}
+
+%------------------------------------------------
+\section{Overview of Project \#2} %
+%------------------------------------------------
+\begin{frame}{Class project description}
+\begin{itemize}
+	\item The class project will be to conduct your own {\it a priori} study of SGS models
+	\item The minimum requirement will be to examine two SGS models
+	\item You will submit the assignment in the form of a short report (4-5 pages max including references and figures) and a short (15 minutes including questions) presentation
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+\begin{itemize}
+	\item The class project will be to conduct your own {\it a priori} study of SGS models
+	\item The minimum requirement will be to examine two SGS models
+	\item You will submit the assignment in the form of a short report (4-5 pages max including references and figures) and a short (15 minutes including questions) presentation
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+\begin{itemize}
+	\item Two datasets will be made available to the class (through email)
+	\item One is wind tunnel PIV data over a rough wall and the other is from DNS of decaying isotropic turbulence
+	\item You do not have to use this data!
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+\begin{itemize}
+	\item One option: You are free to use a dataset from the Johns Hopkins Turbulence Database (\url{http://turbulence.pha.jhu.edu})
+	\item They have channel flow, forced isotropic turbulence, forced magnetohydrodynamic (MHD) turbulence, and buoyancy-driven turbulence
+	\item I'll give a brief demo of this now
+	\item I can help if you run into issues here
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+\begin{itemize}
+	\item If you have your own dataset that you would like to use instead you are free to do so
+	\item Please check with me before getting into your analysis.  This will ensure your data is proper for an {\it a priori} study and that you have a sound plan for data reduction
+	\item Also contact me if you wish to use other data but are unsure of a source
+	\item Don't feel confined to the limited description given here and contact me if you want to do something based on your research topic but are unsure of how to proceed
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+The report should contain the following components (or equivalent)
+\begin{itemize}
+	\item A brief introduction explaining the general idea of LES and the goal of your study. You don't have to show all the LES equations but you must include at least a description of the LES methodology, i.e., scale separation using a low-pass filter and what the closure problem is (i.e., the SGS stress term that must be modeled)
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+The report should contain the following components (or equivalent)
+\begin{itemize}
+	\item A description of the two models you have chosen to evaluate including at least their general basis, any key assumptions they make and any interesting model coefficients etc. that they use
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+The report should contain the following components (or equivalent)
+\begin{itemize}
+	\item A short description of the data set you are using.  This is especially important if you aren't using the provided data.  This doesn't have to be long.
+	\item If you are using the provided data you still need to give a description but it can be short and focus on the relevant details. 
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+The report should contain the following components (or equivalent)
+\begin{itemize}
+	\item Citing a reference does not completely get you off the hook from describing the data but your data description can be as short as a few sentences.  
+	\item The requirement is that a reader doesn't have to check the reference just to know what type of flow and what technique the data was generated/collected from/with
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+The report should contain the following components (or equivalent)
+\begin{itemize}
+	\item Key results (statistical) from your study
+	\item  A summary of the major finding from your study.  It is fine if these are similar results to what has been found previously or are not completely conclusive.  Still, your summary should demonstrate knowledge of the models you tested and their strengths and limitations
+	\item Any references you used in your report
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+\begin{itemize}
+	\item Your report should give as a minimum the following statistics. 
+	\item Note: you are encouraged to calculate other relevant SGS statistics depending on your application/interests and the models that you choose to study.
+	\item Feel free to talk to me about this as you go. What is listed here are minimum requirements
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+Your report should give as a minimum the following statistics
+\begin{itemize}
+	\item Average SGS dissipation rate $\langle \Pi^{\Delta}\rangle$ calculated from the data and $\langle \Pi^{\Delta,M} \rangle$ calculated from each tested model using the filtered data
+	\item Standard deviation of the locally calculated values of $\Pi^{\Delta}$ and $\Pi^{\Delta,M}$ along with the probability density functions of $\Pi^{\Delta}$
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+Your report should give as a minimum the following statistics
+\begin{itemize}
+	\item Correlation coefficients for as many of the components of the SGS stress tensor as you can calculate from your data.  That is calculate 
+\begin{equation}
+\rho\left( \tau_{ij}^{\Delta},\tau_{ij}^{\Delta,M} \right) =
+\frac{cov\left( \tau_{ij}^{\Delta},\tau_{ij}^{\Delta,M} \right)}{\sigma_{\tau_{ij}^{\Delta}} 
+\sigma_{\tau_{ij}^{\Delta,M}}} \nonumber
+\end{equation}
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+Your report should give as a minimum the following statistics
+\begin{itemize}
+	\item Model coefficients for the models you choose to study calculated based on matching the average SGS dissipation rates between the actual data and the model 
+\begin{equation}
+\langle \Pi^{\Delta} \rangle=\langle \Pi^{\Delta,M} \rangle. \nonumber
+\end{equation}
+\item You can also calculate local model coefficients but this is not required
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+Procedurally, you will calculate your statistics as follows (specific examples are for the constant coefficient Smagorinsky model)
+\begin{itemize}
+	\item After selecting your data (and doing any needed data quality control) you will first need to separate your data into resolved and SGS components by calculating $\tilde{u}_i$ and $\widetilde{u_iu_j}$ where the tilde ($\tilde{~}$) is a filter at scale $\Delta$.
+	\item Note, calculating $\widetilde{u_iu_j}$ means filtering the product $u_iu_j$.  Use one of the common filters discussed in class (and that you used in homework \#2) that is appropriate for the model you are testing
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+Procedurally, you will calculate your statistics as follows (specific examples are for the constant coefficient Smagorinsky model)
+\begin{itemize}
+	\item Calculate the exact SGS stress tensor $\tau_{ij}^{\Delta}=\widetilde{u_iu_j}-\tilde{u}_i\tilde{u}_j$
+	\item Calculate the filtered strain rate tensor (or as many components are you can from your data, for incomplete data you may need to make approximations):
+\begin{equation}
+\tilde{S}_{ij} = \frac{1}{2}\left( \frac{\partial \tilde{u}_i}{\partial x_j} + 
+\frac{\partial \tilde{u}_j}{\partial x_i}\right) \nonumber
+\end{equation}
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+Procedurally, you will calculate your statistics as follows (specific examples are for the constant coefficient Smagorinsky model)
+\begin{itemize}
+	\item calculate the modeled stress tensor $\tau_{ij}^{\Delta,M}$ from each of your models using the filtered strain rate tensor $\tilde{S}_{ij}$ and, if needed for the model, the filtered velocity $\tilde{u}_i$
+	\item Calculate the exact and modeled SGS dissipation (recall $\langle \Pi^{\Delta} \rangle = -\langle \tau_{ij}^{\Delta}\tilde{S}_{ij} \rangle$)
+	\item Calculate the correlation coefficients $\rho\left( \tau_{ij}^{\Delta},\tau_{ij}^{\Delta,M} \right)$
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Class project description}
+Procedurally, you will calculate your statistics as follows (specific examples are for the constant coefficient Smagorinsky model)
+\begin{itemize}
+	\item Calculate any model coefficients based on matching the average modeled and exact SGS dissipation. For example, with the Smagorinsky model:
+\begin{equation}
+\langle \Pi^{\Delta} \rangle=\langle \Pi^{\Delta,M} \rangle \ \Rightarrow \ 
+C_S = -\frac{\langle \tau_{ij}^{\Delta}\tilde{S}_{ij} \rangle}
+{\langle 2\Delta^2|\tilde{S}|\tilde{S}_{ij}\tilde{S}_{ij}\rangle} \nonumber
+\end{equation}
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\end{document}
+

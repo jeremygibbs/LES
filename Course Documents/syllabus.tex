@@ -1,0 +1,155 @@
+%%% Template originaly created by Karol Kozioł (mail@karol-koziol.net) and modified for ShareLaTeX use
+
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tabto}
+\usepackage{tgtermes}
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{,}
+\usepackage[
+pdftitle={Math Assignment}, 
+pdfauthor={Joe Doe, Some University},
+colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,bookmarks=true,
+bookmarksopenlevel=2]{hyperref}
+\usepackage{amsmath,amssymb,amsthm,textcomp}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage[amssymb]{SIunits}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\newcolumntype{Y}{ >{\RaggedRight\arraybackslash}X}
+\usepackage{geometry}
+\geometry{total={8.5in,11in},
+left=1in,right=1in,%
+bindingoffset=0mm, top=1in,bottom=1in}
+
+\linespread{1.1}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
+% custom theorems if needed
+\newtheoremstyle{mytheor}
+    {1ex}{1ex}{\normalfont}{0pt}{\scshape}{.}{1ex}
+    {{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
+
+\theoremstyle{mytheor}
+\newtheorem{defi}{Definition}
+\setlist[itemize]{noitemsep, topsep=0pt}
+% my own titles
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\huge \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+ME EN 7960-003 \hfill Fall 2016
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+%\lfoot{Assignment \textnumero{} 5}
+\cfoot{}
+\rfoot{Page \thepage~/~\pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+%%%----------%%%----------%%%----------%%%----------%%%
+
+\begin{document}
+
+\title{Large-Eddy Simulation of Turbulent Flows}
+
+\maketitle
+
+
+\begin{table}[h]
+  \begin{tabularx}{\textwidth}{l Y}
+  \textbf{Instructor} & Jeremy A. Gibbs, Ph.D. \newline Email: jeremy.gibbs@utah.edu\newline Office: MEK 2566\newline Hours: by appointment\\\\
+  \textbf{Lecture} & WEB 1460, Tues and Thurs, 3:40-5:00p\\\\
+  \textbf{Credit} & 3 hours\\\\
+  \textbf{Recommended Texts} & \emph{Elements of Direct and Large-Eddy Simulation}\newline B.J. Geurts (R.T. Edwards, 2004), 329 pp.\newline\vspace{10pt}\emph{Large Eddy Simulation for Incompressible Flows: An Introduction}\newline P. Sagaut (Springer, 2000), 556 pp.\newline\vspace{10pt}\emph{Turbulent Flows}\newline S. B. Pope (Cambridge University Press, 2000), 771 pp.\\\\
+  \textbf{Prerequisites} & ME EN 5700/6700 (or equivalent) or Instructor consent\\\\
+  \textbf{Useful courses} & ME EN 7710\newline ME EN 7720\\\\
+  \textbf{Grading} & Homework \tabto*{75pt} 40\%\newline Project \#1 \tabto*{75pt} 25\% \newline Project \#2 \tabto*{75pt} 35\% 
+\end{tabularx}
+\end{table}
+
+\section*{Course Description}
+This course covers topics related to Large-Eddy Simulation (LES), an advanced Computational Fluid Dynamics (CFD) technique. LES is quickly replacing traditional Reynolds Averaged Navier-Stokes (RANS) modeling as the method of choice for researchers and practitioners studying turbulent fluid flow phenomena in engineering and environmental problems. LES explicitly solves for the larger scale turbulent motions that are highly dependent on boundary conditions, while using a turbulence model only for the smaller (and presumably more universal) motions. This is a distinct advantage over traditional RANS models where the effects of turbulence on the flow field are entirely dependent on the turbulence parameterizations.
+
+
+\section*{Course Objectives}
+\begin{itemize}
+\item Become familiar with the filtering concept in a turbulent flow and how the idea of scale separation forms the basis for LES.
+\item Gain familiarity with the filtered forms of the conservation equations (e.g., mass, momentum, turbulent kinetic energy), how they are derived, and how the different terms in the equations can be interpreted.
+\item Obtain a basic working knowledge of common subgrid-scale (SGS) parameterizations used in LES of turbulent flows.
+\item Understand how to carry out \textit{a priori} analysis of SGS models from experimental and Direct Numerical Simulation (DNS) data sets.
+\item Understand common techniques for \textit{a posteriori} evaluation of SGS models and what conditions are necessary and sufficient for a ``good'' SGS model.
+\item Become familiar with LES SGS models and techniques used in specific flow cases of interest (e.g., isotropic turbulence, high-Reynolds number boundary layers,  turbulent reacting flows, etc.)
+\end{itemize}
+
+\section*{Course Outline}
+\begin{itemize}
+\item Intro and motivation
+\item Analysis tools
+\item Turbulence and scale separation
+\item Equations of motion
+\item Filtering
+\item Filtered equations of motion
+\item Approaches to turbulence modeling
+\item Numerics and LES
+\item Basic SGS models
+\begin{itemize}
+\item eddy viscosity
+\item similarity
+\item nonlinear
+\item mixed
+\item dynamic models
+\end{itemize}
+\item Using Fourier methods to simulate isotropic turbulence (Project \#1)
+\item Evaluating LES (\textit{a posteriori})
+\item Evaluating SGS models (\textit{a priori}, Project \#2)
+\item Special Topics in LES (cover some set of the following examples)
+\begin{itemize}
+\item Boundary and initial conditions
+\item Anisotropic models
+\item Probability based methods
+\item Lagrangian particle models
+\item LES of compressible and/or reacting flows
+\item LES case studies of interest
+\end{itemize}
+\end{itemize}
+
+\section*{Homework}
+Approximately 3 homework assignments will be given during the semester. These assignments will focus on basic topics and ideas that will be needed in the projects (statistics of turbulence, filtering, power spectra estimation, model formulations, etc.).  The assignments will be given throughout the semester when material is covered with an emphasis on the time period before the 1st project.
+
+\section*{Project \#1}
+Project \#1 will focus on the application of LES SGS models in 3D turbulence simulations.  Students will be provided a basic 3D numerical code which they will add their own SGS models to and will then examine the effect of base model type, model coefficient specification, and grid resolution on the resolved simulated velocity fields.  The project will be submitted in the form of a short report (\textasciitilde4 pages) outlining the basics of the simulation code used, the chosen SGS models, and the results of parameter studies.
+
+\section*{Project \#2}
+Project \#2 will consist of gaining experience on doing \textit{a priori} analysis of LES SGS models from experimental or numerical data.  Data sets from various experimental setups (high speed turbulence sensors, PIV) or high resolution DNS will be provided for students to use in the projects based on their research interests.  Alternatively, if students have appropriate data sets (experimental or numerical) that they wish to use for their project they will be free to do so. The project will be submitted in the form of a short report  (\textasciitilde4-6 pages) including: basics and background of the SGS models to be tested, a short description of the data set used in the analysis, and a short summary of key results/insights gained from the tests.  In addition to the project report, all students will be required to give a short presentation (\textasciitilde15 minutes) during the last weeks of class. 
+
+\section*{Useful Information}
+\href{http://regulations.utah.edu/academics/6-100.php}{University of Utah Accommodations Policy (III.Q})\\\\
+\href{http://regulations.utah.edu/academics/6-400.php}{University of Utah Student Code of Conduct}\\\\
+\href{http://www.coe.utah.edu/wp-content/uploads/pdf/faculty/semester_guidelines.pdf}{College of Engineering Guidelines}\\\\
+\href{https://mech.utah.edu/files/2016/06/Grad-Handbook-AY-2015-20161.pdf}{Department Of Mechanical Engineering Graduate Advising Guide}
+\end{document}

@@ -1,0 +1,116 @@
+\documentclass{beamer}[10]
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tabto}
+%\usepackage{beamerthemesplit}
+\usepackage{tikz}
+\usepackage{cancel}
+\usepackage{verbatim}
+\usepackage{fancybox}
+\usepackage{enumerate}
+\usepackage{amsmath,amssymb,amsthm,textcomp,mathtools}
+\usepackage[super]{nth}
+\usepackage[amssymb]{SIunits}
+\usepackage{booktabs}
+\usepackage{cancel}
+\usepackage{bm}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\newcolumntype{Y}{ >{\RaggedRight\arraybackslash}X}
+\usetikzlibrary{arrows,shapes}
+\newcommand\T{\rule{0pt}{2.6ex}}
+\newcommand\B{\rule[-1.2ex]{0pt}{0pt}}
+\definecolor{UUcrimson}{RGB}{204,0,0}
+\mode<presentation>
+{ \usetheme{default}
+  \usecolortheme[named=UUcrimson]{structure}
+  \useinnertheme{circles}
+  \setbeamercovered{transparent}
+  \setbeamertemplate{blocks}[rounded]
+  \usefonttheme[onlymath]{serif}
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{footline}[page number]
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamercolor{section in toc}{fg=black,bg=white}
+  \setbeamercolor{alerted text}{fg=UUcrimson!80!gray}
+  \setbeamercolor*{palette primary}{fg=white,bg=UUcrimson}
+  \setbeamercolor*{palette secondary}{fg=UUcrimson!70!black,bg=gray!15!white}
+  \setbeamercolor*{palette tertiary}{bg=UUcrimson!80!black,fg=gray!10!white}
+  \setbeamercolor*{palette quaternary}{fg=UUcrimson,bg=gray!5!white}
+  \setbeamercolor*{palette sidebar primary}{fg=UUcrimson!10!black}
+  \setbeamercolor*{palette sidebar secondary}{fg=white}
+  \setbeamercolor*{palette sidebar tertiary}{fg=UUcrimson!50!black}
+  \setbeamercolor*{palette sidebar quaternary}{fg=gray!10!white}
+  \setbeamercolor{titlelike}{parent=palette primary,fg=white}
+  \setbeamercolor{frametitle}{bg=UUcrimson}
+  \setbeamercolor{frametitle right}{bg=UUcrimson}
+  \setbeamercolor*{separation line}{}
+  \setbeamercolor*{fine separation line}{}
+}
+
+\usetikzlibrary{backgrounds}
+\makeatletter
+\tikzstyle{every picture}+=[remember picture]
+\tikzset{%
+  fancy quotes/.style={
+    text width=\fq@width pt,
+    align=justify,
+    inner sep=1em,
+    anchor=north west,
+    minimum width=\linewidth,
+    font=\itshape
+  },
+  fancy quotes width/.initial={.8\linewidth},
+  fancy quotes marks/.style={
+    scale=8,
+    text=white,
+    inner sep=0pt,
+  },
+  fancy quotes opening/.style={
+    fancy quotes marks,
+  },
+  fancy quotes closing/.style={
+    fancy quotes marks,
+  },
+  fancy quotes background/.style={
+    show background rectangle,
+    inner frame xsep=0pt,
+    background rectangle/.style={
+      fill=gray!25,
+      rounded corners,
+    },
+  }
+}
+\newenvironment{fancyquotes}[1][]{%
+\noindent
+\tikzpicture[fancy quotes background]
+\node[fancy quotes opening,anchor=north west] (fq@ul) at (0,0) {``};
+\tikz@scan@one@point\pgfutil@firstofone(fq@ul.east)
+\pgfmathsetmacro{\fq@width}{\linewidth - 2*\pgf@x}
+\node[fancy quotes,#1] (fq@txt) at (fq@ul.north west) \bgroup}
+{\egroup;
+\node[overlay,fancy quotes closing,anchor=east] at (fq@txt.south east) {''};
+\endtikzpicture}
+\makeatother
+
+\usepackage{scalerel}[2014/03/10]
+\usepackage{stackengine}
+\usepackage{empheq}
+\newcommand*\widefbox[1]{\fbox{\hspace{0.5em}#1\hspace{0.5em}}}
+
+\newcommand\reallywidetilde[1]{\ThisStyle{%
+  \setbox0=\hbox{$\SavedStyle#1$}%
+  \stackengine{-.1\LMpt}{$\SavedStyle#1$}{%
+    \stretchto{\scaleto{\SavedStyle\mkern.2mu\sim}{.5467\wd0}}{.4\ht0}%
+%    .2mu is the kern imbalance when clipping white space
+%    .5467++++ is \ht/[kerned \wd] aspect ratio for \sim glyph
+  }{O}{c}{F}{T}{S}%
+}}
+\usepackage{media9}
+
+\logo{\includegraphics[width=0.75cm]{logo.jpg}}
+\author[Gibbs]{Dr. Jeremy A. Gibbs}
+\institute{Department of Mechanical Engineering\\University of Utah}
+\date{Fall 2016}

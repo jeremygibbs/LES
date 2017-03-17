@@ -1,0 +1,339 @@
+\include{lecture_header}
+\title{LES of Turbulent Flows: Lectures 8 and 9}
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE & TOC SLIDES
+%----------------------------------------------------------------------------------------
+
+\begin{frame} 
+  \titlepage
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Overview}
+\tableofcontents
+\end{frame}
+
+%------------------------------------------------
+\section{LES filtered equations for compressible flows} %
+%------------------------------------------------
+
+\begin{frame}{LES filtered equations for compressible flows}
+
+\begin{itemize}
+\item What if we apply a filter to the compressible Navier-Stokes equations? Let's look at mass continuity as an example.
+$$
+\reallywidetilde{\frac{\partial \rho}{\partial t} + \frac{\partial \rho u_i}{\partial x_i} = 0}
+$$
+
+$$
+\widetilde{\frac{\partial \rho}{\partial t}} + \widetilde{\frac{\partial \rho u_i}{\partial x_i}} = 0
+$$
+
+$$
+\frac{\partial \widetilde{\rho}}{\partial t} + \frac{\partial \widetilde{\rho u_i}}{\partial x_i} = 0
+$$
+\item We end up with a SFS term involving density, $\widetilde{\rho u_i}$, which requires modeling.
+\item How do we avoid this?
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Density-weighted filtering}
+
+\begin{itemize}
+\item Density-weighted filtering was formalized by Favre (1983) for ensemble statistics.
+\item The procedure is often referred to as Favre filtering.
+\item For an arbitrary quantity $\phi$, the Favre filter is applied as:
+$$\overline{\phi} = \frac{\widetilde{\rho \phi}}{\widetilde{\rho}} \Rightarrow \widetilde{\rho \phi} =  \widetilde{\rho}\overline{\phi}$$
+\item As we approach incompressibility, $\overline{\phi}\sim \widetilde{\phi}$
+\item For LES purposes, the Favre filter represents a density-weighted spatial average.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Non-dimensional compressible equations of motion}
+\begin{itemize}
+\item Non-dimensionalize
+\begin{align*}
+u_i^* &= \frac{u_i}{U}\\
+x_i^* &= \frac{x_i}{\ell}\\
+p^* &= \frac{p}{\rho_o U^2} = \frac{p \ell}{\mu_o U}\\
+t^* &= \frac{t U}{\ell}\\
+\theta^* &= \frac{\theta}{\theta_o}\\
+\nu^* &= \frac{\nu}{\nu_o}\\
+\mu^* &= \frac{\mu}{\mu_o}\\,  
+\end{align*}
+where the $^*$ denotes a non-dimensionalized term.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of mass}
+
+\begin{itemize}
+\item Apply Favre filter to mass continuity:
+$$\reallywidetilde{\frac{\partial \rho}{\partial t} + \frac{\partial \rho u_i}{\partial x_i} = 0} \Rightarrow \frac{\partial \widetilde{\rho}}{\partial t} + \frac{\partial \widetilde{\rho u_i}}{\partial x_i} = 0$$
+\item Recall that the Favre filter is applied as: $\widetilde{\rho \phi} =  \widetilde{\rho}\overline{\phi}$.
+\item Substitution yields the Favre-filtered mass continuity equation:
+$$\frac{\partial \widetilde{\rho}}{\partial t} + \frac{\partial (\widetilde{\rho}\,\overline{u_i})}{\partial x_i} = 0$$
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of mass}
+
+\begin{itemize}
+\item Next, let's rewrite in non-dimensional terms 
+$$\frac{\partial \widetilde{\rho}}{\partial t} + \frac{\partial (\widetilde{\rho}\overline{\phi})}{\partial x_i} = \cancelto{}{\frac{\rho_o U}{\ell}} \frac{\partial \widetilde{\rho^*}}{\partial t^*} + \cancelto{}{\frac{\rho_o U}{\ell}}\frac{\partial\widetilde{ \rho^*}\overline{u_i^*}}{\partial x_i^*} = 0$$
+The result is the non-dimensional Favre-filtered mass continuity equation
+$$\boxed{\frac{\partial \widetilde{\rho}}{\partial t} + \frac{\partial (\widetilde{\rho}\,\overline{u_i})}{\partial x_i} = 0}$$
+where we have dropped the $^*$ notation for convenience.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of momentum}
+
+\begin{itemize}
+\item Start with the conservation of mass:
+$$\underbrace{\vphantom{\frac{\partial (\rho u_i u_j)}{\partial x_j}}\frac{\partial (\rho u_i)}{\partial t}}_{1} + \underbrace{\frac{\partial (\rho u_i u_j)}{\partial x_j}}_{2} =  - \underbrace{\frac{\partial p}{\partial x_i}}_{3} + \underbrace{\frac{\partial}{\partial x_j}\left[ 2\mu S_{ij} - \frac{2}{3}\mu \delta_{ij} \frac{\partial u_k}{\partial x_k}\right]}_{4}$$
+\item To make life easier, let's filter each term individually.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of momentum}
+\begin{itemize}
+\item Term 1
+$$\widetilde{\frac{\partial (\rho u_i)}{\partial t}} = \frac{\partial (\widetilde{\rho u_i})}{\partial t} = \frac{\partial (\widetilde{\rho} \overline{u_i})}{\partial t}$$
+Non-dimensionalizing yields
+$$\frac{\partial (\widetilde{\rho} \overline{u_i})}{\partial t} = \frac{(\partial \widetilde{\rho^*} \rho_o \overline{u_i^*} U)}{\partial t^* \ell / U} = \boxed{\frac{\rho_o U^2}{\ell} \frac{\partial (\widetilde{\rho} \overline{u_i})}{\partial t}}$$
+where we have dropped the $^*$ notation for convenience.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of momentum}
+\begin{itemize}
+\item Term 2
+$$\frac{\reallywidetilde{\partial (\rho u_i u_j)}}{\partial x_j} = \frac{\partial (\widetilde{\rho u_i u_j})}{\partial x_j} = \frac{\partial (\widetilde{\rho}\, \overline{u_i u_j})}{\partial x_j}$$
+Recall from our derivation of the incompressible momentum equation that we utilized the Leonard (1974) decomposition:
+$$\widetilde{u_i u_j} = \widetilde{u_i} \widetilde{u_j} + \tau_{ij}$$
+where $\tau_{ij}$ is the SFS stress tensor. Similarly
+$$\overline{u_i u_j} = \overline{u_i}\,\overline{u_j} + \tau_{ij}$$
+where we have dropped the $^*$ notation for convenience.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of momentum}
+\begin{itemize}
+\item Term 2
+
+Substitution yields
+$$\frac{\partial (\widetilde{\rho}\, \overline{u_i u_j})}{\partial x_j} = \frac{\partial \widetilde{\rho} (\overline{u_i}\,\overline{u_j} + \tau_{ij})}{\partial x_j} = \frac{\partial (\widetilde{\rho}\, \overline{u_i}\,\overline{u_j})}{\partial x_j} + \frac{\partial (\widetilde{\rho}\, \tau_{ij})}{\partial x_j}$$
+Non-dimensionalizing yields
+$$\frac{\partial (\widetilde{\rho}\, \overline{u_i}\,\overline{u_j})}{\partial x_j} + \frac{\partial (\widetilde{\rho}\, \tau_{ij})}{\partial x_j} = \frac{\partial (\widetilde{\rho^*}\rho_o\, \overline{u_i^*}U\,\overline{u_j^*}U)}{\partial x_j^* \ell} + \frac{\partial (\widetilde{\rho^*}\rho_o\, \tau_{ij}^*U^2)}{\partial x_j \ell}$$
+$$= \boxed{\frac{\rho_o U^2}{\ell} \left[\frac{\partial (\widetilde{\rho}\, \overline{u_i}\,\overline{u_j})}{\partial x_j} + \frac{\partial (\widetilde{\rho}\, \tau_{ij})}{\partial x_j}\right]}$$ 
+where we have dropped the $^*$ notation for convenience.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of momentum}
+\begin{itemize}
+\item Term 3
+$$\widetilde{\frac{\partial p}{\partial x_i}} = \frac{\partial \widetilde{p}}{\partial x_i}$$
+Non-dimensionalizing yields
+$$\frac{\partial \widetilde{p}}{\partial x_i} = \frac{\partial \widetilde{p^*}\rho_o U^2}{\partial x_i^* \ell} = \boxed{\frac{\rho_o U^2}{\ell} \frac{\partial \widetilde{p}}{\partial x_i}}$$
+where we have dropped the $^*$ notation for convenience.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of momentum}
+\begin{itemize}
+\item Term 4
+$$\frac{\partial}{\partial x_j}\left[ 2\mu S_{ij} - \frac{2}{3}\mu \delta_{ij} \frac{\partial u_k}{\partial x_k}\right]$$
+First note that $\mu$ is not constant, but rather a function of temperature. So, $\mu = \mu(T)$ and $\bar{\mu} = \mu(\bar{T})$.
+If we define
+$$\sigma_{ij} = 2\mu\left(S_{ij} - \frac{1}{3} \delta_{ij} \frac{\partial u_k}{\partial x_k}\right),$$
+then we can rewrite Term 4 as
+$$\frac{\partial \sigma_{ij}}{\partial x_j}$$
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of momentum}
+\begin{itemize}
+\item Term 4
+$$\widetilde{\frac{\partial \sigma_{ij}}{\partial x_j}} = \frac{\partial \widetilde{\sigma_{ij}}}{\partial x_j} = \frac{\partial}{\partial x_j}\left[\reallywidetilde{2\mu \left( S_{ij} - \frac{1}{3} \delta_{ij} \frac{\partial u_k}{\partial x_k}\right)} \right]$$
+Thus, $\widetilde{\sigma_{ij}}$ cannot be directly expressed in terms of the basic filtered variables\\~\\
+We decompose to $\widetilde{\sigma_{ij}}$ into a smooth flow contribution and a subfilter contribution.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of momentum}
+\begin{itemize}
+\item Term 4
+\begin{align*}
+\text{smooth} &\Rightarrow \overline{\sigma_{ij}} = 2\bar{\mu} \left( \bar{S}_{ij} - \frac{1}{3} \delta_{ij} \frac{\partial \overline{u_k}}{\partial x_k}\right)\\
+\text{subgrid} &\Rightarrow \widetilde{\sigma_{ij}} - \overline{\sigma_{ij}}
+\end{align*}
+Thus,
+$$\frac{\partial \widetilde{\sigma_{ij}}}{\partial x_j}= \frac{\partial \overline{\sigma_{ij}}}{\partial x_j} + \frac{\partial \left(\widetilde{\sigma_{ij}}- \overline{\sigma_{ij}}\right)}{\partial x_j}$$
+Let's non-dimensionalize
+$$\frac{\partial \sigma_{ij}}{\partial x_j} = \frac{\partial}{\partial x_j}\left[2\mu\left(S_{ij} - \frac{1}{3} \delta_{ij} \frac{\partial u_k}{\partial x_k}\right)\right]$$
+and apply to all of the terms in the above expression.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of momentum}
+\begin{itemize}
+\item Term 4
+
+Recall that Re=$U\ell/\nu = U\ell\rho_o/\mu_o\Rightarrow \mu_o=U\ell\rho_o/\text{Re}$
+$$\mu = \mu^* \mu_o = \frac{\mu^* U\ell\rho_o}{\text{Re}}$$ 
+and
+$$S_{ij} = \frac{1}{2}\left(\frac{\partial u_i^* U}{\partial x_j^* \ell} + \frac{\partial u_j^* U}{\partial x_i^* \ell}\right) = \frac{U}{\ell}\frac{1}{2}\left(\frac{\partial u_i^*}{\partial x_j^*} + \frac{\partial u_j^*}{\partial x_i^*}\right) = \frac{U}{\ell}S_{ij}^*$$
+and
+$$\frac{\partial u_k}{\partial x_k}=\frac{\partial u_k^* U}{\partial x_k^* \ell} = \frac{U}{\ell}\frac{\partial u_k^*}{\partial x_k^*}$$
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of momentum}
+\begin{itemize}
+\item Term 4
+
+Putting them altogether yields
+\begin{align*}
+\frac{\partial \sigma_{ij}}{\partial x_j} &= \frac{1}{\ell}\frac{\partial}{\partial x_j^*}\left[2\frac{\mu^* U\ell\rho_o}{\text{Re}}\left(\frac{U}{\ell}\left\{S_{ij}^* - \frac{1}{3} \delta_{ij} \frac{\partial u_k^*}{\partial x_k^*}\right\}\right)\right]\\
+&= \frac{\rho_o U^2}{\ell} \frac{\partial}{\partial x_j^*}\left[\frac{2\mu^*}{\text{Re}} \left( S_{ij}^* - \frac{1}{3} \delta_{ij} \frac{\partial u_k^*}{\partial x_k^*}\right)\right]\\
+&= \frac{\rho_o U^2}{\ell} \frac{\partial \sigma_{ij}^*}{\partial x_j^*}
+\end{align*}
+Thus,
+$$\boxed{\frac{\partial \widetilde{\sigma_{ij}}}{\partial x_j} = \frac{\rho_o U^2}{\ell}\frac{\partial \overline{\sigma_{ij}}}{\partial x_j} + \frac{\rho_o U^2}{\ell}\frac{\partial \left(\widetilde{\sigma_{ij}}- \overline{\sigma_{ij}}\right)}{\partial x_j}}$$
+where we have dropped the $^*$ notation for convenience. 
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of momentum}
+\begin{itemize}
+\item Finally, we combine Terms 1-4 and group SFS terms
+$$\frac{\rho_o U^2}{\ell} \frac{\partial (\widetilde{\rho} \overline{u_i})}{\partial t} + \frac{\rho_o U^2}{\ell} \frac{\partial (\widetilde{\rho}\, \overline{u_i}\,\overline{u_j})}{\partial x_j} + \frac{\rho_o U^2}{\ell} \frac{\partial \widetilde{p}}{\partial x_i} - \frac{\rho_o U^2}{\ell}\frac{\partial \overline{\sigma_{ij}}}{\partial x_j}$$
+$$=- \frac{\rho_o U^2}{\ell}\frac{\partial (\widetilde{\rho}\, \tau_{ij})}{\partial x_j} + \frac{\rho_o U^2}{\ell}\frac{\partial \left(\widetilde{\sigma_{ij}}- \overline{\sigma_{ij}}\right)}{\partial x_j}$$
+Cancelling $\rho_o U^2 / \ell$ yields the dimensionless Favre-filtered conservation of momentum equation
+$$\boxed{\frac{\partial (\widetilde{\rho} \overline{u_i})}{\partial t} +  \frac{\partial (\widetilde{\rho}\, \overline{u_i}\,\overline{u_j})}{\partial x_j} +  \frac{\partial \widetilde{p}}{\partial x_i} - \frac{\partial \overline{\sigma_{ij}}}{\partial x_j}=- \frac{\partial (\widetilde{\rho}\, \tau_{ij})}{\partial x_j} + \frac{\partial \left(\widetilde{\sigma_{ij}}- \overline{\sigma_{ij}}\right)}{\partial x_j}}$$
+
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered conservation of momentum}
+$$\frac{\partial (\widetilde{\rho} \overline{u_i})}{\partial t} +  \frac{\partial (\widetilde{\rho}\, \overline{u_i}\,\overline{u_j})}{\partial x_j} +  \frac{\partial \widetilde{p}}{\partial x_i} - \frac{\partial \overline{\sigma_{ij}}}{\partial x_j}=- \frac{\partial (\widetilde{\rho}\, \tau_{ij})}{\partial x_j} + \frac{\partial \left(\widetilde{\sigma_{ij}}- \overline{\sigma_{ij}}\right)}{\partial x_j}$$
+The terms comprising the SFS viscous term on the RHS are:
+\begin{itemize}
+\item ``smooth'' viscous stress tensor
+$$\overline{\sigma_{ij}} = \frac{2}{\text{Re}}\bar{\mu} \left( \bar{S}_{ij} - \frac{1}{3} \delta_{ij} \frac{\partial \overline{u_k}}{\partial x_k}\right)$$
+\item non-linear viscous stress tensor
+$$\widetilde{\sigma_{ij}} = \frac{2}{\text{Re}}\reallywidetilde{\mu \left( S_{ij} - \frac{1}{3} \delta_{ij} \frac{\partial u_k}{\partial x_k}\right)}$$
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered kinetic energy equation}
+\begin{itemize}
+\item The full kinetic energy equation is written as
+$$\frac{\partial e}{\partial t} + \frac{\partial}{\partial x_j} \left[(e + p) u_j\right] - \frac{\partial (u_i\sigma_{ij})}{\partial x_j} + \frac{\partial q_j}{\partial x_j} = 0$$
+\item $e$ is the total energy density
+$$e = \frac{p}{\gamma -1} + \frac{1}{2}\rho u_iu_i \qquad \text{where} \qquad \gamma = \frac{c_p}{c_v} \approx 1.4 \text{ for air}$$
+\item $\sigma_{ij}$ is the viscous stress tensor
+$$\frac{2\mu}{\text{Re}}\left(S_{ij} - \frac{1}{3} \delta_{ij} \frac{\partial u_k}{\partial x_k}\right)$$
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered kinetic energy equation}
+\begin{itemize}
+\item The full kinetic energy equation is written as
+$$\frac{\partial e}{\partial t} + \frac{\partial ([e + p) u_j])}{\partial x_j} - \frac{\partial (u_i\sigma_{ij})}{\partial x_j} + \frac{\partial q_j}{\partial x_j} = 0$$
+\item $q_j$ is the heat flux
+$$q_j = -\frac{\mu}{(\gamma -1)\text{Re}\text{Pr}\text{M}^2}\frac{\partial T}{\partial x_j}$$
+where Pr is the Prandtl number ($\approx 0.72$ for air) and $M$ is the reference Mach number:
+$$M=\frac{U}{c} \qquad \text{where} \qquad c = \sqrt{\gamma RT}$$
+and $R$ is the ideal gas law constant.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered kinetic energy equation}
+\begin{itemize}
+\item Applying the Favre filter to this equation is left as an exercise for you.
+\item The resulting Favre-filtered kinetic energy equation is given by
+%\begin{align*}
+\begin{empheq}[box=\widefbox]{align*}
+\frac{\partial \bar{e}}{\partial t} + \frac{\partial \left [ (\bar{e} + \tilde{p})\overline{u_j} \right]}{\partial x_j} - \frac{(\overline{u_i}\, \overline{\sigma_{ij}})}{\partial x_j} + \frac{\partial \overline{q_j}}{\partial x_j} =& -a_1 - a_2\\ &-a_3 + a_4 + a_5 - a_6
+\end{empheq}
+%\end{align*}
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered kinetic energy equation}
+\begin{align*}
+\frac{\partial \bar{e}}{\partial t} + \frac{\partial \left [ (\bar{e} + \tilde{p})\overline{u_j} \right]}{\partial x_j} - \frac{(\overline{u_i}\, \overline{\sigma_{ij}})}{\partial x_j} + \frac{\partial \overline{q_j}}{\partial x_j} =& -a_1 - a_2\\ &-a_3 + a_4 + a_5 - a_6	
+\end{align*}
+
+\begin{align*}
+a_1 &= \overline{u_i}\frac{\partial (\widetilde{p} \tau_{ij})}{\partial x_j} &\Rightarrow & \parbox{15em}{kinetic energy transferred from resolved to SFSs}\\
+a_2 &= \frac{1}{\gamma -1} \frac{\widetilde{p u_j} - \widetilde{p} \overline{u_j}}{\partial x_j} &\Rightarrow & \parbox{15em}{pressure velocity SFS term (effect of SFS turbulence on the conduction of heat at resolved scales)}\\
+a_3 & = \reallywidetilde{p \frac{\partial u_j}{\partial x_j}} - \widetilde{p}\frac{\partial \overline{u_j}}{\partial x_j}&\Rightarrow & \parbox{15em}{compressibility effects (vanishes for incompressible)}\\
+\end{align*}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Favre-filtered kinetic energy equation}
+\begin{align*}
+\frac{\partial \bar{e}}{\partial t} + \frac{\partial \left [ (\bar{e} + \tilde{p})\overline{u_j} \right]}{\partial x_j} - \frac{(\overline{u_i}\, \overline{\sigma_{ij}})}{\partial x_j} + \frac{\partial \overline{q_j}}{\partial x_j} =& -a_1 - a_2\\ &-a_3 + a_4 + a_5 - a_6	
+\end{align*}
+\begin{align*}
+a_4 & = \reallywidetilde{\sigma_{ij} \frac{\partial u_i}{\partial x_j}} - \widetilde{\sigma_{ij}}\frac{\partial \overline{u_i}}{\partial x_j}&\Rightarrow & \parbox{15em}{conversion of SFS kinetic energy to internal energy by viscous dissipation}\\
+a_5 & = \frac{\partial (\widetilde{\sigma_{ij}}\overline{u_i} - \overline{\sigma_{ij}}\, \overline{u_i})}{\partial x_j} &\Rightarrow & \parbox{15em}{SFS viscous stress term }\\
+a_6 &= \frac{\partial (\widetilde{q_j} - \overline{q_j})}{\partial x_j} &\Rightarrow & \parbox{15em}{SFS heat flux term }
+\end{align*}
+It is typically assumed that $\widetilde{\sigma_{ij}} - \overline{\sigma_{ij}} \approx 0$ and $\widetilde{q_{j}} - \overline{q_{j}} \approx 0$. This eliminates terms $a_5$ and $a_6$.
+\end{frame}
+
+%------------------------------------------------
+
+\end{document}
+

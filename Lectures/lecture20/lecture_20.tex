@@ -1,0 +1,325 @@
+ \include{lecture_header}
+\title{LES of Turbulent Flows: Lecture 20}
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE & TOC SLIDES
+%----------------------------------------------------------------------------------------
+
+\begin{frame} 
+  \titlepage
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Overview}
+\tableofcontents
+\end{frame}
+
+%------------------------------------------------
+\section{ {\it a priori} studies using Direct Numerical Simulation data} %
+%------------------------------------------------
+\begin{frame}{ \textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item Since shortly after the introduction of the {\bf L}arge-{\bf E}ddy {\bf S}imulation ({\bf LES}) technique by Deardorff (1970), experimental and {\bf D}irect-{\bf N}umerical {\bf S}imulation ({\bf DNS}) data sets have been used to test LES {\bf S}ub{\bf G}rid-{\bf S}cale ({\bf SGS}) models
+	\item This type of model testing was termed {\it a priori} testing by Piomelli et al. (1988)
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}{\textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item Many of these tests use data from low-to-moderate Reynolds number DNS of isotropic turbulence, turbulent channel flow, or mixing layer simulations
+	\item These studies, and many others, helped to establish new SGS models, test existing models, and improve our understanding of the physics associated with grid scale energy transfers. 
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{\textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item What follows is a brief literature review of \textit{a priori} studies using DNS data
+	\item We will cover different types of datasets and how they were used
+	\item This will show you what has been done and perhaps give you ideas for your project related to your own research
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{\textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item Clark et al. (1979) - analysis of isotropic turbulence demonstrated the low correlation level between SGS stresses calculated from DNS and SGS stresses calculated from common (at the time) LES SGS models.
+	\item Motivated by these results and the idea that near grid scale motions are the most significant for SGS energy transfers, Bardina et al. (1980) developed the similarity model. 
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{\textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item Piomelli et al. (1988) used DNS of turbulent channel flow to show the link between the choice of filter type and SGS model type
+	\item In another study, Piomelli et al. (1991) used DNS of channel flow to help establish the relative importance of backscatter events (an inverse-energy cascade from SGS to resolved scales) in LES
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{\textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item Domaradzki et al. (1993) used Taylor-Green vortex simulations to examine near grid cutoff scale energy transfers
+	\item They observed inverse energy transfers (backscatter) centered around the filter cutoff scale supporting Bardina et al.'s (1980) hypothesis that the most active SGS are those close to $\Delta$
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{\textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item Hartel et al. (1994) used results from DNS of low-Re number channel and pipe flow to examine SGS energy transfers in the near-wall region (buffer layer) -- using conditional averaging, they found that backscatter could be associated with coherent structures in this region 
+	\item Vreman et al. (1995) - study of compressible mixing layer flow using DNS established the relative importance of the many SGS components that arise from filtering the compressible Navier-Stokes equation 
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{\textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item A two-parameter dynamic mixed model was proposed by Salvetti and Banerjee (1995) and tested using DNS of channel flow and homogeneous compressible flow
+	\item Salvetti and Banerjee (1995) compared their new model with the dynamic Smagorinsky model of Germano et al. (1991) and the dynamic mixed model of Zang et al., (1993)
+	\item Their results showed improved correlations for their model over the other two
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{\textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item Menon et al., (1996) used isotropic turbulence DNS to examine scale similarity and one-equation SGS models
+	\item They found that the one-equation models outperformed scale similarity models for poorly resolved simulations
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{\textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item Hartel and Kleiser (1997) studied the effect of different filter kernels on SGS energy transfers (Leonard, cross and SGS stress components)
+	\item They found very little effect of the different types of filters provided that the decomposition was done in a Galilean invariant format -- contradicting some earlier results
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{\textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item Salvetti and Beux (1998) focused on the relation between numerical discretization methods and implied implicit LES filters
+	\item They looked at how different finite difference approximations effected the Leonard term and its correlation with the SGS stresses
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{\textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item Juneja and Brasseur (1999) used DNS data from simulations of isotropic turbulence and homogeneous buoyancy driven turbulence to study the effect of anisotropy and under-resolved turbulence on LES
+	\item They found that SGS models with a direct coupling between the resolved and SGS could not properly account for SGS accelerations with direct implications for simulations of high-Reynolds number boundary layers
+	\item This also suggested that stochastic SGS models  (Mason and Thomson, 1992) may be appropriate
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{\textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item Shao et al. (1999) also examined SGS modeling of anisotropic flows but using mixing layer DNS
+	\item They interpreted their results by separating the SGS stress tensor into parts that depend on the mean gradients and those that do not
+	\item Their results showed that the SGS component that depends on the mean gradients is well represented by the eddy viscosity models while the part that does not can be represented by a similarity model for filters applied in physical space
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{\textit{a priori} studies using Direct Numerical Simulation data}
+\begin{itemize}
+	\item More recently, Lu et al., (2007) used DNS of rotating turbulence to examine the effect of rotation on small scale turbulence and SGS models
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\section{Experimental {\it a priori} studies}
+\subsection{Laboratory experiments}
+%------------------------------------------------
+
+\begin{frame}{Experimental {\it a priori} studies - Laboratory experiments}
+\begin{itemize}
+	\item In parallel to the numerical studies, many researchers have used experimental data with different instrumentation setups and various levels of approximation to examine the performance of LES SGS models in different flows
+	\item This includes both laboratory studies and field studies in the atmospheric boundary layer (ABL)
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Experimental {\it a priori} studies - Laboratory experiments}
+\begin{itemize}
+	\item Experimental studies are limited in their ability to collect 3D-unsteady flow fields
+	\item However, they have the distinct advantage over DNS of allowing researchers to look at LES in more realistic flows and over a much larger range of Re -- all the way up to ABL scales
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Experimental {\it a priori} studies - Laboratory experiments}
+\begin{itemize}
+	\item Most lab experiments were conducted in wind tunnels and used either hot-wire anemometry or particle image velocimetry (PIV)
+	\item In wind tunnel and field experiments, typically 1D or 2D data is collected
+	\item This necessitates approximations for both filtering (i.e., using a 1D or 2D filter instead of a 3D filter to separate resolved and SGSs) and velocity gradients
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Experimental {\it a priori} studies - Laboratory experiments}
+\begin{itemize}
+	\item Meneveau (1994), explored grid turbulence (the wind tunnel analog of isotropic turbulence) using a single hot-wire anemometer (a 1D approximation) with the goal of characterizing sufficient conditions for LES SGS models in terms of statistical moments of SGS quantities
+	\item Also examined $\nu_T$ models and determined that while locally they have very little correlation with actual SGS dissipation rates, they do contain the correct physics (evaluated statistically) to generate acceptable energy spectra of the resolved LES flow field
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Experimental {\it a priori} studies - Laboratory experiments}
+\begin{itemize}
+	\item Liu et al. (1994, 1995) used PIV measurements (a 2D approximation) to look at similarity SGS models in the far-field of a turbulent jet
+	\item They verified earlier DNS results showing that the Smagorinsky model has poor correlation with the measured SGS dissipation rate and calculated SGS model coefficients by matching the average modeled and measured SGS dissipation rates
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Experimental {\it a priori} studies - Laboratory experiments}
+\begin{itemize}
+	\item O'Neil and Meneveau (1997) also used a single hot-wire but measured wake flow behind a circular cylinder
+	\item Confirming earlier results for eddy-viscosity and similarity models
+	\item Showed that anisotropy contributes to changes in the Smagorinsky coefficient near the wake's edges and that coherent structures have a direct effect on the performance of SGS models
+	\item Results support the idea that SGS models should `learn' from the resolved scale motions (as in dynamic models)
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Experimental {\it a priori} studies - Laboratory experiments}
+\begin{itemize}
+	\item Liu et al. (1999) studied the effect of rapid straining created by pushing two disks together in a water tank using time-resolved PIV measurements
+	\item They found the rapid straining increased the correlation between measured and modeled SGS stress for the Smagorinsky model
+	\item They also found opposite trends from typical steady-flow cases
+	\item In the straining flow, the Smagorinsky (similarity) model under-predicted (over-predicted) SGS dissipation
+	\item Results suggested that a linear combination of the two may be necessary for rapidly straining flows
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Experimental {\it a priori} studies - Laboratory experiments}
+\begin{itemize}
+	\item Cerutti et al. (2000) performed one of the few experimental studies looking at spectral eddy-viscosity models using an array of X-wire probes (hot-wires that measure two velocity components) in a turbulent wake flow
+	\item Marusic et al. (2001) used X-wires in conjunction with surface mounted shear stress sensors to do one of the first {\it a priori} studies of surface boundary conditions for turbulent boundary layer LES
+	\item They found that common parameterizations were unable to reproduce the level of fluctuations in the wall shear stress
+	\item Based on their results, they developed a new LES surface boundary condition
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Experimental {\it a priori} studies - Laboratory experiments}
+\begin{itemize}
+	\item Tao et al. (2002) - one of the few (and first) studies to use holographic PIV (3D PIV) to examine SGS models -- looked at the geometric relation between the SGS stress and strain in the core of a square duct
+	\item Kang and Meneveau (2005) combined a hot-wire probe array with DNS data to look at the association between coherent structures and looked at filtered stress-strain geometric tensor alignment
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Experimental {\it a priori} studies - Laboratory experiments}
+\begin{itemize}
+	\item Natrajan and Christensen (2006) - looked at the association of SGS models and coherent structures, with a focus on how backscatter events correlated with vortex packets in a wind tunnel boundary layer
+	\item Hong et al., (2012) performed a similar analysis over a rough wall (pyramids) and examined the correlation between coherent structures and SGS fluxes with a focus on the association between roughness characteristics and inter scale energy transfer
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Experimental {\it a priori} studies - Laboratory experiments}
+\begin{itemize}
+	\item Lastly, studies have looked at SGS modeling and spatially heterogeneous flows
+	\item Carper and Port\'e-Agel (2008) used PIV measurements after a rough-to-smooth aerodynamic surface roughness transition to look at SGS physics and the trends in model coefficients downstream of the transition
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\subsection{Atmospheric boundary layer field experiments}
+\begin{frame}{Experimental {\it a priori} studies - ABL field experiments}
+\begin{itemize}
+	\item Shortly after major lab experimental efforts to study SGS models started, field experiments in the ABL began
+	\item Taking measurements in the ABL allows researchers to look at SGS models and physics at Re numbers unattainable in a laboratory setting or by DNS
+	\item In addition, the large scale of the ABL allows robust instrumentation to be used that is not as dependent on calibration procedures (sonic anemometers)
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Experimental {\it a priori} studies - ABL field experiments}
+\begin{itemize}
+	\item One of the first of these studies was Port\'e-Agel et al. (1998). 
+	\item Used a sonic anemometer and 1D filtering approximations and focused on SGS heat flux and the Smagorinsky model 
+	\item Confirmed that the model could not reproduce SGS dissipation events, such as backscatter, associated with coherent structures (e.g., temperature ramps)
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Experimental {\it a priori} studies - ABL field experiments}
+\begin{itemize}
+	\item Around the same time, Tong et al. (1999) used a 2D array to examine SGS stress in the ABL surface layer
+	\item Shortly there after, Port\'e-Agel et al. (2001) extended the use of a 2D array to include two horizontal planes of sonic anemometers allowing them to measure all the components of the filtered strain rate tensor
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Experimental {\it a priori} studies - ABL field experiments}
+\begin{itemize}
+	\item Higgins et al. (2003) looked at tensor alignment similar to the lab study of Tao et al. (2002) using ABL data and confirmed that the SGS stress and filtered strain rate tensors do not align in contradiction to the assumption of the Smagorinsky model
+	\item Found that the mixed model formulation may be warranted for high-Re turbulence
+	\item Many of the ABL studies mirrored the lab experiments in their quest to connect coherent structures with SGS physics using conditional averaging
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Experimental {\it a priori} studies - ABL field experiments}
+\begin{itemize}
+	\item Carper and Port\'e-Agel (2004) used an array of sonics on the Utah salt flats (see Metzger 2002 for a description of the test location) to look at SGS dissipation events associated with 3D coherent structures
+	\item Higgins et al. (2007) used a $4\times 4$ array of sonics (also on the salt flats) to examine the effect of 2D versus 3D filtering
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Experimental {\it a priori} studies - ABL field experiments}
+\begin{itemize}
+	\item Bou-Zeid et al. (2008) examined the scale dependence of SGS model coefficients in the ABL using sonic anemometers and found good agreement with published assumptions (i.e. power law dependence)
+	\item More recently, several ABL researchers have started to examine SGS physics over complex surfaces including lakes and glaciers
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Experimental {\it a priori} studies - ABL field experiments}
+\begin{itemize}
+	\item In many of the ABL studies, the ability of SGS models to account for buoyancy effects (an important factor in realistic ABL simulations) was studied
+	\item Kleissl et al. (2003, 2004) found a clear dependence of the Smagorinsky coefficient on atmospheric stability
+	\item Bou-Zeid et al. (2010) found a dependence of the SGS Prandtl number of stability
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+
+
+\end{document}
+

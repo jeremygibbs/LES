@@ -1,0 +1,204 @@
+ \include{lecture_header}
+\title{LES of Turbulent Flows: Lecture 17}
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE & TOC SLIDES
+%----------------------------------------------------------------------------------------
+
+\begin{frame} 
+  \titlepage
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Overview}
+\tableofcontents
+\end{frame}
+
+%------------------------------------------------
+\section{Stochastic Burgers Equation} %
+%------------------------------------------------
+\begin{frame}{Stochastic Burgers Equation}
+\begin{itemize}
+	\item Originally conceived by Dutch scientist J.M. Burgers in the 1930s
+	\item One of the first attempts to arrive at the statistical theory of turbulent fluid motion
+	$$\frac{\partial u}{\partial t} + u\frac{\partial u}{\partial x} = \nu \frac{\partial^2 u}{\partial x^2}$$
+	This represents a very simplified model that describes the interaction of non-linear inertial terms and dissipation in the motion of a fluid
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Stochastic Burgers Equation}
+The original Burgers equation shares a lot in common with the N-S equations
+\begin{itemize}
+	\item advective nonlinearity
+	\item diffusion (can compute Re)
+	\item invariance and conservation laws, such as translation in space and time
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Stochastic Burgers Equation}
+\begin{itemize}
+	\item There were downsides discovered
+	\item The equation can be integrated explicitly -- meaning that it does not share the N-S equations sensitivity to small changes in initial conditions in presence of boundaries, forcing, and at high Re
+	\item Thus Burgers equation is not an ideal model for the chaotic nature of turbulence
+	\item It was also found that shock waves form in the limit of vanishing viscosity
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Stochastic Burgers Equation}
+\begin{itemize}
+	\item The use of Burgers with a forcing term has been popular because the original model is an incomplete description of a turbulent system
+	\item The forcing term can account for the neglected effects
+	\item For instance, one may perturb the system with a stochastic process that is stationary in time and space (this preserves translational invariance)
+	\item One example is white noise - which preserves Galilean invariance 
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Stochastic Burgers Equation}
+\begin{itemize}
+	\item Project \#1 is based on a useful model of the Navier-Stokes equations: the 1D Stochastic Burgers Equation
+	$$\frac{\partial u}{\partial t} + u\frac{\partial u}{\partial x} = \nu \frac{\partial^2 u}{\partial x^2} + \eta(x,t)$$
+	\item This analog has been found to be a useful one for the study of turbulent like nonlinear systems (e.g., Basu, 2009 and references contained within).
+	\item Although 1D, this equation has some of the most important characteristics of a turbulent flow -- making it a good model case
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Stochastic Burgers Equabasution}
+\begin{itemize}
+	\item In short, the Burgers system has been popular because it allowed one to gain insight into turbulence structure before having to generalize for the fully-3D case
+	\item It shares many characteristics of 3D turbulence, such as nonlinearity, energy spectrum, intermittent energy dissipation
+	\item The system is also super-cheap computationally
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Stochastic Burgers Equation}
+$$\frac{\partial u}{\partial t} + u\frac{\partial u}{\partial x} = \nu \frac{\partial^2 u}{\partial x^2} + \eta(x,t)$$
+\begin{itemize}
+	\item In the above equation, the ``new'' term is $\eta$ -- which is called the stochastic term
+	\item $\eta(x,t)$ should be white noise in time, but spatially correlated
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Stochastic Burgers Equation}
+\begin{itemize}
+	\item Here we use
+	$$\eta(x,t) = \sqrt{\frac{2D_0}{\Delta t}} \mathfrak{F}^{-1} \left\lbrace|k|^{\beta/2}\hat{f}(k)\right\rbrace$$
+	where
+	\begin{align*}
+	D_0 =& \text{ noise amplitude}\\
+	\Delta t = &\text{ time step}\\
+	\mathfrak{F}^{-1} =& \text{ inverse Fourier transform}\\
+	f =&\text{ Gaussian random noise with mean = 0 and}\\ 
+	&\text{ standard deviation = $\sqrt{N}$ (where $N$ is \# of points)}\\
+	\beta =& \text{ spectral slope of the noise (taken as $-3/4$ here)} 
+	\end{align*}
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Stochastic Burgers Equation}
+\begin{itemize}
+	\item Many solutions exist for stochastic Burgers equation
+	\item Here we follow Basu (2009) -- Fourier collocation
+	\item Basically, use Fourier methods but advance time in real space (compare to Galerkin)
+	\item To do this, the main numerical methods we need to know are how to calculate \underline{derivatives} and how to \underline{advance time}
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Fourier Derivatives}
+
+\begin{itemize}
+	\item Mathematically the discrete Fourier transform pair is (see also Lecture 3 as a supplement)
+	\begin{align}
+		\label{backward}
+		f(x_j) &= \sum^{N/2 -1}_{m = -N/2} \hat f(k_m) e^{i k_m x_j} \rightarrow \text{backward transform}\\
+		\label{forward}
+		\underbrace{\hat f(k_m)}_{\substack{\text{Fourier}\\\text{coeffs}}} &= \frac{1}{N} \sum^N_{j=1} f(x_j) e^{-i k_m x_j} \rightarrow \text{forward transform}
+	\end{align}
+	where
+	$$k_m = \frac{2\pi m}{N\Delta x} \rightarrow \text{wave number (wave period)}$$
+	recall
+	$$e^{-ik_mx_j} = \cos (k_mx_j) + i\sin (k_m x_j)$$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Fourier Derivatives}
+\begin{itemize}
+	\item How is this used numerically to calculate a derivative?
+	\item  A Fourier series can be used to interpolate $f(x_j)$ at any point $x$ in the flow and at any time $t$
+	\item  If we differentiate the Fourier representation of $f(x_j)$ (Eq. ~\ref{backward}) with respect to $x$
+	\begin{align*}
+	\frac{\partial f}{\partial x} &= \frac{\partial}{\partial x} \left[ \sum^{N/2 -1}_{m = -N/2} \hat f(k_m) e^{i k_m x_j} \right]\\
+	&= \sum^{N/2 -1}_{m = -N/2} \hat f(k_m) \frac{\partial e^{i k_m x_j}}{\partial x}\\
+	\Aboxed{&=\sum^{N/2 -1}_{m = -N/2} i k_m \hat f(k_m) e^{i k_m x_j}}
+	\end{align*}
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Fourier Derivatives}
+\begin{itemize}
+	\item If we compare this to Eq.~(\ref{backward}), we notice that we have
+	\begin{align*}
+		\frac{\partial f}{\partial x} = g &= \sum^{N/2 -1}_{m = -N/2}\underbrace{i k_m \hat f(k_m)}_{\hat g(k_m)} e^{i k_m x_j}\\
+		\Aboxed{&=\sum^{N/2 -1}_{m = -N/2} \hat g (k_m) e^{i k_m x_j}}
+	\end{align*}
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Fourier Derivatives}
+Procedurally, we can use this to find $\left.\frac{\partial f}{\partial x_j}\right|_j$ given $f(x_j)$ as follows:
+\begin{itemize}
+	\item calculate $\hat f(k_m)$ by the forward transform (Eq.~\ref{forward})
+	\item multiply by $i k_m$ to get $\hat g (k_m)$, and then
+	\item perform a backward (inverse) transform (Eq.~\ref{backward}) to get $\left.\frac{\partial f}{\partial x_j}\right|_j$
+\end{itemize}
+The method easily generalizes to any order derivative
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Fourier Derivatives}
+Although Fourier methods are quite attractive due to their high accuracy and near-exact representation of derivatives, they have a few important limitations
+\begin{itemize}
+	\item $f(x_j)$ must be continuously differentiable
+	\item $f(x_j)$ must be periodic
+	\item grid spacing must be uniform
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Time Advancement}
+\begin{itemize}
+	\item Time advancement in this code is accomplished using a \nth{2}-order Adams-Bashforth scheme
+	\item This is a basic extension of the Euler method -- multipoint (in time), with the idea to fit a polynomial of desired order (\textit{e.g.}, \nth{2}) through 3 points in time to get
+	$$\phi^{n+1} = \phi^n + \frac{\Delta t}{2} \left[ 3f(t^n,\phi^n) - f(t^{n-1}, \phi^{n-1})\right]$$
+	\item For specifics on how these things are implemented, see the Matlab code on the course website or on Canvas
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+
+
+\end{document}
+

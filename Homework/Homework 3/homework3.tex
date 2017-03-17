@@ -1,0 +1,114 @@
+%%% Template originaly created by Karol Kozioł (mail@karol-koziol.net) and modified for ShareLaTeX use
+
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{tgtermes}
+\usepackage{natbib}
+%\usepackage[subnum]{cases}
+\usepackage[super]{nth}
+\bibpunct{(}{)}{;}{a}{}{,}
+\usepackage{amsmath,amssymb}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage[amssymb]{SIunits}
+\usepackage{rotating}
+\usepackage{enumitem}
+\usepackage{geometry}
+\geometry{total={8.5in,11in},
+left=1in,right=1in,%
+bindingoffset=0mm, top=1in,bottom=1in}
+\usepackage[super]{nth}
+\usepackage[
+pdftitle={Homework 1}, 
+pdfauthor={Jeremy Gibbs, University of Utah},
+colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,bookmarks=true,
+bookmarksopenlevel=2]{hyperref}
+
+\linespread{1.1}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
+
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\huge \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+ME EN 7960-003 \hfill Homework \#3 \hfill Due: December \nth{1}
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+%\lfoot{Assignment \textnumero{} 5}
+\cfoot{}
+\rfoot{Page \thepage~/~\pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+%%%----------%%%----------%%%----------%%%----------%%%
+
+\begin{document}
+
+\title{Large-Eddy Simulation of Turbulent Flows}
+
+\maketitle
+
+\begin{enumerate}
+
+\item Using the basic properties of convolution filters and starting with the scalar conservation equation given by
+\begin{displaymath}
+\frac{\partial \theta}{\partial t} + u_i\frac{\partial \theta}{\partial x_i} = \frac{1}{ScRe}\frac{\partial^2 \theta}{\partial x_i^2}+Q :
+\end{displaymath}
+
+\begin{enumerate}
+\item derive the filtered scalar conservation equation.  Clearly show each step in the process and clearly define the subfilter scale term.
+\item Use Leonard's decomposition (Leonard, Adv. Geophys. 1974) to decompose your answer to (a) and label terms that indicate the SFS Reynolds flux, interaction between resolved and unresolved scales, and the interaction amongst the smallest resolved scales (Leonard term).
+\end{enumerate}
+
+\item Using the filtered conservation of momentum equation given by:
+\begin{displaymath}
+\frac{\partial \tilde{u}_i}{\partial t} + \frac{\partial \tilde{u}_i\tilde{u}_j}{\partial x_j} = 
+-\frac{\partial \tilde{P}}{\partial x_i} + \frac{1}{Re}\frac{\partial^2 \tilde{u}_i}{\partial x_j^2}-\frac{\partial \tau_{ij}}{\partial x_j}+F_i,
+\end{displaymath}
+derive an equation for the residual kinetic energy $k_r=\frac{1}{2}\tau_{ii}$.  Clearly identify the following terms in the equation: all transport terms (i.e., terms that don't create or destroy SFS energy), SFS energy transfer (i.e., $\Pi$), and viscous dissipation of energy.
+
+\item Derive an equation for the SFS scalar flux bulk coefficient $C_s^2Sc_{\text{sfs}}^{-1}$ that appears in the Smagorinsky eddy-diffusivity model given by:  
+\begin{displaymath}
+q_i=-\Delta^2 C_s^2Sc_{\text{sfs}}^{-1} |\tilde{S}|\frac{\partial \tilde{\theta}}{\partial x_i},
+\end{displaymath} 
+using the dynamic procedure (assume scale invariance).  Clearly list any assumptions that you make along the way.
+
+\item Starting with SFS scalar flux given by:
+\begin{displaymath}
+q_i=\widetilde{u_i\theta}-\tilde{u}_i\tilde{\theta},
+\end{displaymath}
+derive a scale similarity model following Liu et al., (J. Fluid Mech. 1994).  Clearly state all assumptions.
+
+\item Derive a scale-dependent dynamic model for the SFS stress based on the Wong-Lilly model (Wong, Lilly; Phys. Fluids, 1994) for the SFS
+stress given by:
+\begin{displaymath}
+\tau_{ij}-\frac{1}{3}\tau_{kk}=-2C_{\epsilon}\Delta^{4/3}\tilde{S}_{ij}
+\end{displaymath}
+You will need to use Germano's identity (Germano et al., Phys. Fluids, 1991) at two different scales to do this and you should end up with an algebraic expression for $C_{\epsilon}$, where $C_{\epsilon}$ is a function of $\Delta$ (and the resolved velocity field).  Clearly state all assumptions that you make along the way.
+
+\end{enumerate}
+
+\end{document}

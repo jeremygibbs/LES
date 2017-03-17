@@ -1,0 +1,12 @@
+.DS_Store
+.texpadtmp/
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.idx
+*.ind
+*.log
+*.out
+*.synctex.gz
+*.toc
